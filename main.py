@@ -2,9 +2,12 @@ import math
 global quitconsole
 quitconsole = False
 
-#               ***Instructions for new commands***
-#First put the name of the command in the basiccommands array
-#Then go the the command section and add what you want
+
+global functions():
+functions = []
+
+def addfunction(a):
+  functions.append(a)
 
 #                         ***COMMANDSSS***
 #These are your commands just put the name of it here then look below for other info
