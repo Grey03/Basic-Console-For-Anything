@@ -1,43 +1,64 @@
 import math
+
 global quitconsole
 quitconsole = False
+global commands
+commands = ["help","quitconsole","clearconsole","varexample"]
+global inpt
+inpt = ""
+
+def consolestart():
+  global quitconsole
+  global commands
+
+  while quitconsole == False:
+    getcommand()
+    commandvalid = False
+
+    for i in range(len(commands)):
+      if inpt.startswith(commands[i]) and commandvalid == False:
+        commandnum = i
+        commandvalid = True
+        
+    if commandvalid == False:
+      print ("Invalid Command")
+    else:
+      runcommand(commandnum)
+
+def getcommand():
+  global inpt
+  inpt = input("> ")
+
+def quit():
+  global quitconsole
+  quitconsole = True
 
 
-global functions():
-functions = []
+def runcommand(commandnum):
+  global commands
+  global quitconsole
 
-def addfunction(a):
-  functions.append(a)
+  if commandnum == 0:
+    print ("----------")
+    print ("|Commands |")
+    print ("----------")
+    for i in range(len(commands)):
+      print (commands[i])
+  elif commandnum == 1:
+    quit()
+  elif commandnum == 2:
+    for i in range(200):
+      print ("\n")
+  elif commandnum == 3:
+    #THIS IS A VAR EXAMPLE FOR COMMANDS THAT NEED EXTRA JUNK
+    #Just add ur inputs with the command
+    print ("Enter First Num")
+    x = int(input("> "))
+    print ("Enter Second Num")
+    y = int(input("> "))
+    print ("x + y = " + str(x+y))
+  else:
+    print ("something went wrong here")
+  print ("")
 
-#                         ***COMMANDSSS***
-#These are your commands just put the name of it here then look below for other info
-global basiccommands
-basiccommands = ["help","quit","clear"]
-
-#                         ***Interpretor***
-#Take your command and searches through command list for it
-def commandinterp(a):
-  commandfound = False
-  global basiccommands
-  for i in range(len(basiccommands)):
-    if commandfound == False and a.startswith(basiccommands[i] + " "):
-        commandfound = True
-        return i
-  if commandfound == False:
-    print ("\" " + str(a) + "\" is an Invalid Command\n")
-
-while (quitconsole != True):
-  comipt = ((input("Enter your command > ")).lower() + " ")
-
-  #                    ***COMMAND SECTION***
-  #simply make an if for  your command that leads to what you want 
-  def commandrun(command):
-    if command == 0:
-      print (basiccommands)
-    if command == 1:
-      quitconsole = True
-    if command == 2:
-      for l in range(0,200):
-        print ("")
-
-  commandrun(commandinterp(comipt))
+consolestart()
